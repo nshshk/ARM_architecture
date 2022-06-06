@@ -1,4 +1,4 @@
-# ARM_architecture
+# ARM\_architecture
 
 ## Prerequisition
 
@@ -7,3 +7,9 @@ $ sudo apt-get install libc6-armel-cross libc6-dev-armel-cross binutils-arm-linu
 $ sudo apt-get install gdb-multiarc
 
 ```
+
+  
+
+## gdb-dashboard
+
+[https://github.com/cyrus-and/gdb-dashboard](https://github.com/cyrus-and/gdb-dashboard)

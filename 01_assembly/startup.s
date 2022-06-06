@@ -80,3 +80,61 @@ umull:
 
     umull r0, r1, r2, r3 @ [r1, r0] = r2 * r3
 
+b:
+    b forward
+    add r1, r2, #4
+    add r0, r6, #2
+    add r3, r7, #4
+forward:
+    sub r1, r2, #4
+
+@backward:   @ infinite loop
+@    add r1, r2, #4
+@    sub r1, r2, #4
+@    add r4, r6, r7
+@    b backward
+
+@bl:  @ infinite return
+@    bl subroutine
+@    cmp r1, #5
+@    moveq r1, #0
+@    subroutine:
+@    mov pc, lr @ return
+
+ldr_str:
+    mov r0, #0x1000
+    ldr r1, =0x01010101
+
+    str r1, [r0]
+
+    mov r0, #0x00000000
+    mov r1, #0x1000
+
+    ldr r0, [r1], #4
+
+ldmia:
+    mov r0, #0x1000
+    mov r1, #0x00000000
+    mov r2, #0x00000000
+    mov r3, #0x00000000
+
+    ldmia r0!, {r1-r3}
+
+stmib_ldmda:
+    mov r0, #0x1000
+    mov r1, #0x00000009
+    mov r2, #0x00000008
+    mov r3, #0x00000007
+
+    stmib r0!, {r1-r3}
+
+    mov r1, #1
+    mov r2, #2
+    mov r3, #3
+
+    ldmda r0!, {r1-r3}
+
+mrs_msr:
+    mrs r1, cpsr
+    bic r1, r1, #0x80
+    msr cpsr_c, r1
